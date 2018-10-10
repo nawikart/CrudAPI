@@ -7,7 +7,6 @@ db = DbManager()
 
 def create_data(data_obj):
     try:
-
         data = System_app()
         data.parse_json(data_obj, 'create')
         return db.save(data)
@@ -16,9 +15,9 @@ def create_data(data_obj):
 
     return None
 
-def read_data(id):
+def read_data(uuid):
     try:
-        data_obj = db.open().query(System_app).filter(System_app.id == id).one()
+        data_obj = db.open().query(System_app).filter(System_app.uuid == uuid).one()
         data = {
             'name': data_obj.name,
             'api_key': data_obj.api_key,
@@ -38,9 +37,9 @@ def read_data(id):
 #     return db.open().query(System_app).all()
 
 
-def update_data(id, data_obj):
+def update_data(uuid, data_obj):
     try:
-        data = db.open().query(System_app).filter(System_app.id == id).one()
+        data = db.open().query(System_app).filter(System_app.uuid == uuid).one()
         data.parse_json(data_obj, 'update')
         return db.save(data)
     except:
@@ -48,9 +47,9 @@ def update_data(id, data_obj):
     
     return None
 
-def delete_data(id):
+def delete_data(uuid):
     try:
-        data = db.open().query(System_app).filter(System_app.id == id).one()
+        data = db.open().query(System_app).filter(System_app.uuid == uuid).one()
         db.delete(data)
         return True
     except:
