@@ -17,9 +17,10 @@ class System_app(Base):
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
-    def parse_json(self, data):
+    def parse_json(self, data, mod):
         
-        self.uuid = uuid.uuid4()
+        if mod == 'create':
+            self.uuid = uuid.uuid4()
 
         if 'name' in data:
             self.name = data['name']

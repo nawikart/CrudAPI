@@ -7,9 +7,9 @@ db = DbManager()
 
 def create_data(data_obj):
     try:
-        
+
         data = System_app()
-        data.parse_json(data_obj)
+        data.parse_json(data_obj, 'create')
         return db.save(data)
     except:
         pass
@@ -41,7 +41,7 @@ def read_data(id):
 def update_data(id, data_obj):
     try:
         data = db.open().query(System_app).filter(System_app.id == id).one()
-        data.parse_json(data_obj)
+        data.parse_json(data_obj, 'update')
         return db.save(data)
     except:
         pass
