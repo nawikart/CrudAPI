@@ -6,7 +6,7 @@ from db.base import Base, inverse_relationship, create_tables
 
 class System_app(Base):
     __tablename__ = 'system_app'
-    uuid = Column(String(36), primary_key=True)
+    id = Column(String(36), primary_key=True)
     name = Column(String(100))
     api_key = Column(String(255))
     type = Column(String(50))
@@ -19,7 +19,7 @@ class System_app(Base):
     def parse_json(self, data, mod):
         
         if mod == 'create':
-            self.uuid = uuid.uuid4()
+            self.id = uuid.uuid4()
 
         if 'name' in data:
             self.name = data['name']

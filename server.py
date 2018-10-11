@@ -20,9 +20,9 @@ def create_data_api():
     return resp
 
 
-@app.route('/read-data-api/<uuid>', methods=['GET'])
-def read_data_api(uuid):
-    result = read_data(uuid)
+@app.route('/read-data-api/<id>', methods=['GET'])
+def read_data_api(id):
+    result = read_data(id)
 
     if result != None:
         data = { 'status' : 'success', 'data': result }
@@ -35,7 +35,7 @@ def read_data_api(uuid):
 
 @app.route('/update-data-api', methods=['POST'])
 def update_data_api():
-    result = update_data(request.form['uuid'], request.form)
+    result = update_data(request.form['id'], request.form)
 
     if result != None:
         data = { 'status' : 'success' }
@@ -48,7 +48,7 @@ def update_data_api():
 
 @app.route('/delete-data-api', methods=['POST'])
 def delete_data_api():
-    result = delete_data(request.form['uuid'])
+    result = delete_data(request.form['id'])
 
     if result:
         data = { 'status' : 'success' }

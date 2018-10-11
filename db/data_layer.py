@@ -15,9 +15,9 @@ def create_data(data_obj):
 
     return None
 
-def read_data(uuid):
+def read_data(id):
     try:
-        data_obj = db.open().query(System_app).filter(System_app.uuid == uuid).one()
+        data_obj = db.open().query(System_app).filter(System_app.id == id).one()
         data = {
             'name': data_obj.name,
             'api_key': data_obj.api_key,
@@ -37,9 +37,9 @@ def read_data(uuid):
 #     return db.open().query(System_app).all()
 
 
-def update_data(uuid, data_obj):
+def update_data(id, data_obj):
     try:
-        data = db.open().query(System_app).filter(System_app.uuid == uuid).one()
+        data = db.open().query(System_app).filter(System_app.id == id).one()
         data.parse_json(data_obj, 'update')
         return db.save(data)
     except:
@@ -47,9 +47,9 @@ def update_data(uuid, data_obj):
     
     return None
 
-def delete_data(uuid):
+def delete_data(id):
     try:
-        data = db.open().query(System_app).filter(System_app.uuid == uuid).one()
+        data = db.open().query(System_app).filter(System_app.id == id).one()
         db.delete(data)
         return True
     except:
