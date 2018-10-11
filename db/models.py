@@ -16,8 +16,7 @@ class System_app(Base):
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
-    def parse_json(self, data, mod):
-        
+    def parse_json(self, data, mod):        
         if mod == 'create':
             self.id = uuid.uuid4()
 
@@ -36,15 +35,45 @@ class System_app(Base):
         if 'ip' in data:
             self.ip = data['ip']
 
+    def read_data(self, data_obj):
+        data = {
+            'name': data_obj.name,
+            'api_key': data_obj.api_key,
+            'type': data_obj.type,
+            'status': data_obj.status,
+            'ip': data_obj.ip
+        }
+        return data        
 
-# class System_config(Base):
-#     __tablename__ = 'system_config'
-#     id = Column(Integer, primary_key=True)
-#     key = Column(String) #255
-#     value = Column(String) #Text
+
+
+
+class System_config(Base):
+    __tablename__ = 'system_config'
+    id = Column(String(36), primary_key=True)
+    key = Column(String(255))
+    value = Column(String(255)) #Text
     
-#     created_at = Column(DateTime, default=func.now())
-#     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+
+    def parse_json(self, data, mod):
+        
+        if mod == 'create':
+            self.id = uuid.uuid4()
+
+        if 'key' in data:
+            self.key = data['key']
+        
+        if 'value' in data:
+            self.value = data['value']
+
+    def read_data(self, data_obj):
+        data = {
+            'key': data_obj.key,
+            'value': data_obj.value
+        }
+        return data  
 
 
 
