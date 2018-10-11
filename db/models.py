@@ -6,8 +6,7 @@ from db.base import Base, inverse_relationship, create_tables
 
 class System_app(Base):
     __tablename__ = 'system_app'
-    id = Column(Integer, primary_key=True)
-    uuid = Column(String(36))
+    uuid = Column(String(36), primary_key=True)
     name = Column(String(100))
     api_key = Column(String(255))
     type = Column(String(50))
