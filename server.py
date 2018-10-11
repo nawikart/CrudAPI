@@ -16,8 +16,7 @@ def create_data_api():
     else:
         data = { 'status' : 'error' }
 
-    resp = Response(json.dumps(data), status=200, mimetype='application/json')
-    return resp
+    return Response(json.dumps(data), status=200, mimetype='application/json')
 
 
 @app.route('/read-data-api/<id>', methods=['GET'])
@@ -29,8 +28,7 @@ def read_data_api(id):
     else:
         data = { 'status' : 'error' }
 
-    resp = Response(json.dumps(data), status=200, mimetype='application/json')
-    return resp
+    return Response(json.dumps(data), status=200, mimetype='application/json')
 
 
 @app.route('/update-data-api', methods=['POST'])
@@ -42,8 +40,7 @@ def update_data_api():
     else:
         data = { 'status' : 'error' }
 
-    resp = Response(json.dumps(data), status=200, mimetype='application/json')
-    return resp    
+    return Response(json.dumps(data), status=200, mimetype='application/json')    
 
 
 @app.route('/delete-data-api', methods=['POST'])
@@ -55,8 +52,7 @@ def delete_data_api():
     else:
         data = { 'status' : 'error' }
 
-    resp = Response(json.dumps(data), status=200, mimetype='application/json')
-    return resp 
+    return Response(json.dumps(data), status=200, mimetype='application/json') 
 
 
 app.run(debug=True)
